@@ -78,7 +78,7 @@ const auntenticar = async (req, res) => {
         return res.status(403).json({msg: error.message});
     }
 
-}
+};
 
 const olvidePassword = async (req, res) => {
     const { email } = req.body;
@@ -96,7 +96,7 @@ const olvidePassword = async (req, res) => {
     } catch (error) {
         console.log(error);
     }
-}
+};
 
 const comprobarToken = async (req, res) => {
     const { token } = req.params;
@@ -110,11 +110,28 @@ const comprobarToken = async (req, res) => {
         const error = new Error("Token no valido");
         return res.status(400).json({msg: error.message});
     }
-}
+};
 
-const nuevoPassword = (req, res) => {
+const nuevoPassword = async (req, res) => {
+    const { token } = req.params;
+    const { password } = req.body;
 
-}
+    const veterinario = await Veterinario.findOne({token});
+
+    if(!veterinario) {
+        const error = new Error("Hubo un error");
+        return res.status(400).json({msg: error.message});
+    }
+
+    try {
+        veterinario.token = null;
+        veterinario.password = password;
+        await veterinario.save();
+        res.json({msg: "Password modificado correctamente"});
+    } catch (error) {
+        console.log(error);
+    }
+};
 
 
 export { registrar, perfil, confirmar, auntenticar, olvidePassword, comprobarToken, nuevoPassword };
