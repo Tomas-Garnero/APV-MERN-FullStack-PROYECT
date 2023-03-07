@@ -3,7 +3,7 @@ import bcrypt from "bcrypt";
 import generarId from "../helpers/generarId.js";
 
 const veterinarioSchema = mongoose.Schema({
-    name: {
+    nombre: {
         type: String,
         required: true,
         trim: true  // elimina espacios en blanco al inicio o al final
