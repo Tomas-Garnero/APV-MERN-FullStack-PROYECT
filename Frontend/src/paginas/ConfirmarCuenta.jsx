@@ -17,6 +17,7 @@ const ConfirmarCuenta = () => {
             try {
                 const url = `/veterinarios/confirmar/${id}`;
                 const { data } = await clieteAxios(url);
+                // console.log(data);
                 setCuentaConfirmada(true); 
                 setAlerta({ msg: data.msg, error: false });
             } catch (error) {
@@ -37,11 +38,11 @@ const ConfirmarCuenta = () => {
             </div>
             <div className="mt-20 md:mt-5 shadow-lg px-5 py-10 rounded-xl bg-white">
                 {!cargando && <Alerta alerta={alerta} />}
-                {cuentaConfirmada && (
+                {cuentaConfirmada && 
                     <Link to="/" className="block text-center my-5 text-gray-500">
                         Iniciar Sesión
                     </Link>
-                )}
+                }
             </div>
         </>
     )
