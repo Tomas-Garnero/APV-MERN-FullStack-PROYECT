@@ -1,14 +1,15 @@
 import { useState } from "react"; 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Alerta from "../components/Alerta";
 import clienteAxios from "../config/axios";
-import useAuth from "../hook/useAuth";
 
 const Login = () => {
 
     const [ email, setEmail ] = useState("");
     const [ password, setPassword ] = useState("");
     const [ alerta, setAlerta ] = useState({});
+
+    const navigate = useNavigate();
 
     const { msg } = alerta;
 
@@ -17,12 +18,16 @@ const Login = () => {
         
         if([email, password].includes("")) {
             setAlerta({msg: "Todos los campos son obligatorios", error: true});
+            // setTimeout(() => {
+            //     setAlerta("");
+            // }, 5000);
             return;
         }
 
         try {
             const { data } = await clienteAxios.post("/veterinarios/login", {email, password});
             localStorage.setItem("token", data.token);
+            navigate("/admin");
         } catch (error) {
             setAlerta({msg: error.response.data.msg, error: true});
         }
