@@ -20,6 +20,7 @@ const ConfirmarCuenta = () => {
                 // console.log(data);
                 setCuentaConfirmada(true); 
                 setAlerta({ msg: data.msg, error: false });
+                return;
             } catch (error) {
                 setAlerta({ msg: error.response.data.msg, error: true });
             }
