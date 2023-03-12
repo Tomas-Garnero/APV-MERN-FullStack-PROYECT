@@ -5,13 +5,17 @@ const AuthContext = createContext();
 
 const AuthProvider = ({children}) => {
 
+    const [ cargando, setCargando ] = useState(true);
     const [ auth, setAuth ] = useState({});
 
     useEffect(() => {
         const auntenticarUsuario = async () => {
             const token = localStorage.getItem("token");
             
-            if(!token) return;
+            if(!token) {
+                setCargando(false);
+                return;
+            }
             
             const config = {
                 headers: {
@@ -27,13 +31,13 @@ const AuthProvider = ({children}) => {
                 console.log(error.response.data.msg);
                 setAuth({});
             }
-
+            setCargando(false);
         }
         auntenticarUsuario();
     }, [])
 
     return(
-        <AuthContext.Provider value={{auth, setAuth}}>
+        <AuthContext.Provider value={{auth, setAuth, cargando}}>
             {children}
         </AuthContext.Provider>
     )
