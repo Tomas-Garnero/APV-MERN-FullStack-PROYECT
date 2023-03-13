@@ -13,7 +13,7 @@ const Formulario = () => {
 
     const [ alerta, setAlerta ] = useState({});
 
-    const { guardarPaciente } = usePacientes();
+    const { guardarPaciente, paciente } = usePacientes();
 
 
     const handleSubmit = e => {
