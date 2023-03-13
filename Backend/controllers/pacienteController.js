@@ -15,7 +15,8 @@ const agregarPaciente = async (req, res) => {
 };
 
 const obtenerPacientes = async (req, res) => {
-    const pacientes = await Paciente.find().where("Veterinario").equals(req.veterinario);
+    const { veterinario } = req;
+    const pacientes = await Paciente.find().where("veterinario").equals(veterinario._id);
     res.json(pacientes);
 };
 

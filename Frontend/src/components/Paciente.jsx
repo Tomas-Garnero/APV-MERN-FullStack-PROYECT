@@ -1,19 +1,17 @@
 import usePacientes from "../hook/usePacientes";
 
 const Paciente = (paciente) => {
+    
+    console.log(paciente)
 
     const { setEdicion } = usePacientes();
 
-    const { email, fecha, nombre, propietario, sintomas, _id } = paciente;
-
-    console.log(fecha)
+    const { email, fecha, nombre, propietario, sintomas, _id } = paciente.paciente;
 
     const formatearFecha = fecha => {
         const nuevaFecha = new Date(fecha);
-        return new Intel.DateTimeFormat("es-MX", {dataStyle: "long"}).format(nuevaFecha);
+        return nuevaFecha.toLocaleDateString();
     }
-
-    console.log(fecha)
 
     return (
         <div className="mx-5 my-10 bg-white shadow-md px-5 py-10 rounded-xl">   

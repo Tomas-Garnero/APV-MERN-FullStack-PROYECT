@@ -1,9 +1,11 @@
+import { useState } from "react";
 import usePacientes from "../hook/usePacientes";
 import Paciente from "./Paciente.jsx";
 
 const ListadoPacientes = () => {
 
     const { pacientes } = usePacientes();
+    console.log(pacientes)
 
     return (
         <>
@@ -15,10 +17,12 @@ const ListadoPacientes = () => {
                         <span className="text-indigo-600 font-bold"> Pacientes y Citas</span>
                     </p>
                     {pacientes.map(paciente => {
-                        <Paciente
-                            key={paciente._id}
-                            paciente={paciente}
-                        />
+                        return (
+                            <Paciente
+                                key={paciente._id}
+                                paciente={paciente}
+                            />
+                        )
                     })}
                 </>
             ) : (
