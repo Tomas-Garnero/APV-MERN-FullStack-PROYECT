@@ -36,8 +36,14 @@ const Formulario = () => {
             setAlerta({msg: "Todos los campos son obligatorios", error: true});
             return;
         }
-        setAlerta({});
-        guardarPaciente({nombre, propietario, email, fecha, sintomas, id}); 
+        guardarPaciente({nombre, propietario, email, fecha, sintomas, id});
+        setAlerta({msg: "Guardado Correctamente"});
+        setNombre(""); 
+        setPropietario(""); 
+        setEmail(""); 
+        setFecha(""); 
+        setSintomas(""); 
+        setId(null); 
     }
 
     const { msg } = alerta; 

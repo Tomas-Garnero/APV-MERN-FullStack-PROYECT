@@ -23,6 +23,8 @@ const obtenerPacientes = async (req, res) => {
 const obtenerPaciente = async (req, res) => {
     const { id } = req.params;
     const paciente = await Paciente.findById(id);
+    console.log(id)
+    console.log(paciente)
 
     if(!paciente) {
         return res.status(404).json({msg: "No encontrado"});
