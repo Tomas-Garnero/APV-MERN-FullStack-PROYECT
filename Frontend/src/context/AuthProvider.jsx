@@ -41,8 +41,29 @@ const AuthProvider = ({children}) => {
         setAuth({});
     }
 
-    const actualizarPerfil = datos => {
-        console.log(datos)
+    const actualizarPerfil =  async datos => {
+
+        const token = localStorage.getItem("token");
+            
+            if(!token) {
+                setCargando(false);
+                return;
+            }
+            
+            const config = {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`
+                }
+            }
+
+        try {
+            const url = `/veterinarios/perfil/${datos._id}`;
+            const { data } = await clienteAxios.put(url, datos, config);
+            console.log(data); 
+        } catch (error) {
+            console.log(error.response);
+        }
     }
 
     return(
