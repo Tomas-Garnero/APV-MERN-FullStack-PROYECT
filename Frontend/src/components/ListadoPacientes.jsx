@@ -5,7 +5,6 @@ import Paciente from "./Paciente.jsx";
 const ListadoPacientes = () => {
 
     const { pacientes } = usePacientes();
-    console.log(pacientes)
 
     return (
         <>

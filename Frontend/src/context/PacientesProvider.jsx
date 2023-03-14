@@ -23,7 +23,6 @@ export const PacientesProvider = ({children}) => {
                 }
                 const { data } = await clienteAxios("/pacientes", config);
                 setPacientes(data); 
-
             } catch (error) {
                 console.log(error);
             }
@@ -32,6 +31,13 @@ export const PacientesProvider = ({children}) => {
     }, [])
 
     const guardarPaciente = async (paciente) => {
+
+        if(paciente.id) {
+            console.log(paciente.id, "editando...")
+        } else {
+            console.log("nuevo")
+        }
+
         try {
             const token = localStorage.getItem("token");
 

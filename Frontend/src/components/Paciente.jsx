@@ -1,8 +1,6 @@
 import usePacientes from "../hook/usePacientes";
 
 const Paciente = (paciente) => {
-    
-    console.log(paciente)
 
     const { setEdicion } = usePacientes();
 
