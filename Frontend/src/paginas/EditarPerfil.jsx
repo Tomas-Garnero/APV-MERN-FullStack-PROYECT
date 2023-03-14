@@ -1,16 +1,32 @@
 import { useEffect, useState } from "react";
 import AdminNav from "../components/AdminNav";
 import useAuth from "../hook/useAuth";
+import Alerta from "../components/Alerta";
 
 const EditarPerfil = () => {
 
-    const { auth } = useAuth();
+    const { auth, actualizarPerfil } = useAuth();
 
     const [ perfil, setPerfil ] = useState({});
+    const [ alerta, setAlerta ] = useState({});
     
     useEffect(() => {
         setPerfil(auth);
     }, [auth])
+
+    const handleSubmit = e => {
+        e.preventDefault();
+
+        const { nombre, email } = perfil;
+
+        if([nombre, email].includes("")) {
+            setAlerta({msg: "Email y Nombre son obligatorios", error: true});
+            return;
+        }
+        actualizarPerfil(perfil);
+    }
+
+    const { msg } = alerta;
 
     return (
         <>
@@ -21,7 +37,8 @@ const EditarPerfil = () => {
             </p>
             <div className="flex justify-center">
                 <div className="w-full md:w-1/2 bg-white shadow rounded-lg p-5">
-                    <form>
+                    {msg && <Alerta alerta={alerta} />}
+                    <form onSubmit={handleSubmit}>
                         <div className="my-3">
                             <label className="uppercase font-bold text-gray-600">Nombre</label>
                             <input
@@ -38,6 +55,8 @@ const EditarPerfil = () => {
                                 type="text"
                                 className="border bg-gray-50 w-full p-2 mt-5 rounded-lg"
                                 name="web"
+                                value={perfil.web || ""}
+                                onChange={e => setPerfil({...perfil, [e.target.name] : e.target.value})}
                             />
                         </div>
                         <div className="my-3">
@@ -46,6 +65,8 @@ const EditarPerfil = () => {
                                 type="text"
                                 className="border bg-gray-50 w-full p-2 mt-5 rounded-lg"
                                 name="telefono"
+                                value={perfil.telefono || ""}
+                                onChange={e => setPerfil({...perfil, [e.target.name] : e.target.value})}
                             />
                         </div>
                         <div className="my-3">
@@ -54,6 +75,8 @@ const EditarPerfil = () => {
                                 type="text"
                                 className="border bg-gray-50 w-full p-2 mt-5 rounded-lg"
                                 name="email"
+                                value={perfil.email || ""}
+                                onChange={e => setPerfil({...perfil, [e.target.name] : e.target.value})}
                             />
                         </div>
                         <input 

@@ -18,7 +18,7 @@ const veterinarioSchema = mongoose.Schema({
         unique: true,
         trim: true
     },
-    phone: {
+    telefono: {
         type: String,
         default: null,
         trim: true
