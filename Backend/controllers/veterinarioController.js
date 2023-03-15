@@ -178,6 +178,10 @@ const actualizarPerfil = async (req, res) => {
         console.log(error);
     }
 };
+const actualizarPassword = async (req, res) => {
+    console.log(req.veterinario)
+    console.log(req.body)
+}
 
 export { 
     registrar, 
@@ -187,5 +191,6 @@ export {
     olvidePassword, 
     comprobarToken, 
     nuevoPassword, 
-    actualizarPerfil 
+    actualizarPerfil,
+    actualizarPassword
 };
