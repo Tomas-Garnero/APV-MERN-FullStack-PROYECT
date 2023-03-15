@@ -13,7 +13,7 @@ const CambiarPassword = () => {
         pwd_nuevo: ""
     });
 
-    const handleSubmit = e => {
+    const handleSubmit = async e => {
         e.preventDefault();
 
         if(Object.values(password).some(campo => campo === "")) {
@@ -25,8 +25,9 @@ const CambiarPassword = () => {
             setAlerta({msg: "El password debe contener al menos 6 carácteres", error: true});
             return;
         }
-        
-        guardarPassword(password);
+
+        const respuesta = await guardarPassword(password);
+        setAlerta(respuesta);
     }
 
     const { msg } = alerta;
