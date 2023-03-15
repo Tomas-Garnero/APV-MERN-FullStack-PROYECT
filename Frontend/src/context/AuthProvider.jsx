@@ -66,8 +66,12 @@ const AuthProvider = ({children}) => {
         }
     }
 
+    const guardarPassword = async (datos) => {
+        
+    }
+
     return(
-        <AuthContext.Provider value={{auth, setAuth, cargando, cerrarSesion, actualizarPerfil}}>
+        <AuthContext.Provider value={{auth, setAuth, cargando, cerrarSesion, actualizarPerfil, guardarPassword}}>
             {children}
         </AuthContext.Provider>
     )
