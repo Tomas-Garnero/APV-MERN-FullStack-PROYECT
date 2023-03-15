@@ -179,7 +179,6 @@ const actualizarPerfil = async (req, res) => {
     }
 };
 
-
 export { 
     registrar, 
     perfil, 
