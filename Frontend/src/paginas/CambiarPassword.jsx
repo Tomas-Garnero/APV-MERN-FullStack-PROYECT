@@ -27,7 +27,7 @@ const CambiarPassword = () => {
         }
 
         const respuesta = await guardarPassword(password);
-        setAlerta(respuesta);
+        setAlerta(respuesta); 
     }
 
     const { msg } = alerta;
