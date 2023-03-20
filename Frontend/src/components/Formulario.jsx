@@ -34,6 +34,9 @@ const Formulario = () => {
         // Validar Formulario
         if([nombre, propietario, email, fecha, sintomas].includes("")) {
             setAlerta({msg: "Todos los campos son obligatorios", error: true});
+            setTimeout(() => {
+                setAlerta("");
+            }, 3500);
             return;
         }
         guardarPaciente({nombre, propietario, email, fecha, sintomas, id});
@@ -44,6 +47,10 @@ const Formulario = () => {
         setFecha(""); 
         setSintomas(""); 
         setId(null); 
+
+        setTimeout(() => {
+            setAlerta("");
+        }, 3500);
     }
 
     const { msg } = alerta; 

@@ -18,15 +18,30 @@ const CambiarPassword = () => {
 
         if(Object.values(password).some(campo => campo === "")) {
             setAlerta({msg: "Todos los campos son obligatorios", error: true});
+
+            setTimeout(() => {
+                setAlerta("");
+            }, 3000);
+            
             return;
         }
 
         if(password.pwd_nuevo.length < 6) {
             setAlerta({msg: "El password debe contener al menos 6 carácteres", error: true});
+
+            setTimeout(() => {
+                setAlerta("");
+            }, 3000);
+
             return;
         }
 
         const respuesta = await guardarPassword(password);
+
+        setTimeout(() => {
+            setAlerta("");
+        }, 3000);
+
         setAlerta(respuesta); 
     }
 

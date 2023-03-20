@@ -21,10 +21,19 @@ const EditarPerfil = () => {
 
         if([nombre, email].includes("")) {
             setAlerta({msg: "Email y Nombre son obligatorios", error: true});
+
+            setTimeout(() => {
+                setAlerta("");
+            }, 3000);
+            
             return;
         }
         const resultado = await actualizarPerfil(perfil);
         setAlerta(resultado);
+
+        setTimeout(() => {
+            setAlerta("");
+        }, 6500);
     }
 
     const { msg } = alerta;
